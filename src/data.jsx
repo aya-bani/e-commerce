@@ -1,0 +1,206 @@
+export const productcards = [
+{
+        name:"Product1",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man1.png"
+},
+{
+        name:"Product2",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man2.png"
+}
+,
+{
+        name:"Product3",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man3.png"
+},
+{
+        name:"Product4",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man4.png"
+},
+{
+        name:"Product5",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man5.png"
+},
+{
+        name:"Product6",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man6.png"
+},
+{
+        name:"Product7",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man7.png"
+}
+,
+{
+        name:"Product8",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man8.png"
+},
+{
+        name:"Product9",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man9.png"
+},
+{
+        name:"Product10",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/man10.png"
+},
+
+
+
+{
+        name:"Product1",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman1.png"
+},
+{
+        name:"Product2",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman2.png"
+},
+{
+        name:"Product3",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman3.png"
+},
+{
+        name:"Product4",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman4.png"
+},
+{
+        name:"Product5",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman5.png"
+},
+
+
+{
+        name:"Product6",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman6.png"
+},
+{
+        name:"Product7",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman7.png"
+},
+{
+        name:"Product8",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman8.png"
+},
+{
+        name:"Product9",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman9.png"
+},
+{
+        name:"Product10",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/woman10.png"
+},
+
+
+{
+        name:"Product1",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid1.png"
+},
+{
+        name:"Product2",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid2.png"
+},
+{
+        name:"Product3",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid3.png"
+},
+{
+        name:"Product4",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid4.png"
+},
+{
+        name:"Product5",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid1.png"
+},
+{
+        name:"Product6",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid6.png"
+},
+{
+        name:"Product7",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid7.png"
+},
+{
+        name:"Product8",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid8.png"
+},
+{
+        name:"Product9",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid9.png"
+},
+{
+        name:"Product10",
+        etoile:4,
+        price:"12.00",
+        image:"src/assets/images/kid10.png"
+}
+] ;
+
+export const discover = [
+        {title:"Kid's Collection",
+        img1:"src/assets/images/kid11.png",
+        img2:"src/assets/images/kid12.png",
+        },
+        {title:"Women's Collection",
+        img1:"src/assets/images/woman11.png",
+        img2:"src/assets/images/woman12.png",
+        },
+        {title:"Men's Collection",
+                img1:"src/assets/images/men11.png",
+                img2:"src/assets/images/men12.png",
+                },
+] 
