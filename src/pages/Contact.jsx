@@ -1,5 +1,5 @@
-import Navbar from "C:/Users/Aya Bani/projets/e-commerce/src/components/Navbar.jsx"; 
-import Footer from "C:/Users/Aya Bani/projets/e-commerce/src/components/Footer.jsx";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 const Contact = () => {
   return (

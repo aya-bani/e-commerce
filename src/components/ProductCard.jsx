@@ -3,18 +3,45 @@ import { MdShoppingCart } from "react-icons/md";
 import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"; 
 import { IoCloseSharp } from "react-icons/io5"; 
-import { collection, addDoc, deleteDoc, doc, query, where, getDocs } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { db, auth } from '../../firebaseConfig'; // Use the imported db and auth from firebaseConfig
+import { collection, addDoc, getDocs, query, where, deleteDoc } from "firebase/firestore"; // Import Firestore functions
+import { useState } from 'react';
 
-const ProductCard = ({ image, name, etoile, price }) => {
+const ProductCard = ({ image, name, etoile, price, id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
-  const toggleFavorite = () => {
+  const toggleFavorite = async () => {
     setIsFavorite(!isFavorite);
-  };
 
+    const favoritesRef = collection(db, "favorites");
+  
+    try {
+      const q = query(favoritesRef, where("productId", "==", name)); 
+      const querySnapshot = await getDocs(q);
+  
+      if (querySnapshot.empty) {
+        // Item not found, add it to favorites
+        await addDoc(favoritesRef, {
+          productId: name,  
+          name: name,
+          // price: price,
+          image: image,
+          etoile: etoile,
+          addedAt: new Date(),
+        });
+      } else {
+        // Item already in favorites, remove it
+        querySnapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+      }
+    } catch (error) {
+      console.error("Error toggling favorite: ", error);
+    }
+  };
+  
   const toggleCart = () => {
     const message = isFilled ? "Removed from Shopping Cart" : "Added to Shopping Cart";
     setIsFilled(!isFilled);
@@ -45,7 +72,6 @@ const ProductCard = ({ image, name, etoile, price }) => {
         className="w-full h-auto object-contain rounded-t-lg"
       />
 
-
       <div className="p-4">
         <div className="flex justify-between items-center">
           <p className="font-medium text-lg sm:text-xl lg:text-2xl text-gray-800">{name}</p>
@@ -69,9 +95,13 @@ const ProductCard = ({ image, name, etoile, price }) => {
               ) : (
                 <GiShoppingCart style={{ fontSize: "30px", color: '#000' }} /> 
               )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-        {popupMessage && (
-        <div className="absolute  bg-[#FFA92E] text-white text-xl p-4 rounded-lg shadow-lg z-10 flex items-center transition-opacity duration-300 ease-in-out opacity-100 w-[20vw]">
+      {popupMessage && (
+        <div className="absolute bg-[#FFA92E] text-white text-xl p-4 rounded-lg shadow-lg z-10 flex items-center transition-opacity duration-300 ease-in-out opacity-100 w-[20vw]">
           <IoCloseSharp 
             className="cursor-pointer text-white hover:text-gray-800 mr-2 mb-4 top-2 absolute right-2"
             onClick={() => setPopupMessage("")} 
@@ -80,23 +110,6 @@ const ProductCard = ({ image, name, etoile, price }) => {
           <div className="flex-grow text-white">{popupMessage}</div>
         </div>
       )}
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-     
-
-
-      <div className="flex justify-center">
-        <a href="/">
-          <button className="m-4 px-4 py-2 border border-black bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-300 ease-in-out">
-            View More
-          </button>
-        </a>
-      </div>
     </div>
   );
 };

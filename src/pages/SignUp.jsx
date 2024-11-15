@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { auth } from "C:/Users/Aya Bani/projets/e-commerce/firebaseConfig.js"; 
+import { auth } from "../../firebaseConfig.js"; 
 import { createUserWithEmailAndPassword } from "firebase/auth"; 
 
 const SignUp = () => {

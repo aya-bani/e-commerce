@@ -3,7 +3,6 @@ const Footer = () => {
     <div className="w-full bg-[#1E1E1E] text-white mt-auto">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between p-8 text-base md:text-xl space-y-8 md:space-y-0 md:space-x-8 lg:gap-32">
         
-        {/* Logo and Contact Information */}
         <div className="flex flex-col items-start">
           <div className="flex items-center space-x-4 mb-4">
             <img src="src/assets/images/logolight.png" alt="Logo" className="w-12 h-12" />
