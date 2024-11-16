@@ -13,6 +13,7 @@ import OrderSummaryCard from './components/OrderSummaryCard';
 import Faq from './pages/Faq';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import Favorite from './pages/Favorite';
+import ShoppingCartCard from './components/ShoppingCartCard';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
               <Route path={`/${Paths.faq}`} element={<Faq/>}/>
               <Route path={`/${Paths.dashboard}`} element={<AdminDashboard/>}/>
               <Route path={`/${Paths.favorite}`} element={<Favorite/>}/>
+              <Route path={`/${Paths.card}`} element={<ShoppingCartCard/>}/>
           </Routes>
       </Router>
 

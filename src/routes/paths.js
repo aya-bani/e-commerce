@@ -13,6 +13,7 @@ const Paths = {
     faq : "faq's page",
     dashboard :"dashboard",
     favorite :"favorite",
+    card:"card",
 
 }
 

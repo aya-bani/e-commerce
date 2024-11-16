@@ -1,7 +1,7 @@
 const OrderSummaryCard = () => {
   return (
-    <div className="flex flex-col items-center bg-white border border-gray-300 rounded-lg shadow-md p-6 m-4 w-full sm:w-[45vw] md:w-[30vw] lg:w-[20vw] h-auto">
-      <p className="text-xl font-semibold mb-4">Order Summary</p>
+<div className="flex flex-col align-center justify-center items-center bg-white border border-gray-300 rounded-lg shadow-md p-6 m-4 w-full sm:w-[45vw] md:w-[30vw] lg:w-[80vw] max-h-[70vh]">
+<p className="text-xl font-semibold mb-4">Order Summary</p>
 
       <div className="w-full border-t border-black mb-4"></div>
 
