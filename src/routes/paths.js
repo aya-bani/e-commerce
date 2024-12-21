@@ -9,11 +9,12 @@ const Paths = {
     signin : "signin",
     signup :"signup",
     shoppingcart :"shoppingcart",
-    productdetails : "productdetails",
+    productdetails: "/productdetails/:productId", 
     faq : "faq's page",
     dashboard :"dashboard",
     favorite :"favorite",
     card:"card",
+ 
 
 }
 

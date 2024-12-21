@@ -1,9 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from "./ProductCard";
-import { productcards } from "../data";
+import { db } from "../../firebaseConfig.js";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ProductsContainer = () => {
   const cardsPerSlide = 3;
+  const [menProducts, setMenProducts] = useState([]);
+  const [womenProducts, setWomenProducts] = useState([]);
+  const [kidsProducts, setKidsProducts] = useState([]);
+
+  const [currentIndexMen, setCurrentIndexMen] = useState(0);
+  const [currentIndexWomen, setCurrentIndexWomen] = useState(0);
+  const [currentIndexKids, setCurrentIndexKids] = useState(0);
+
+  const totalSlidesMen = Math.ceil(menProducts.length / cardsPerSlide);
+  const totalSlidesWomen = Math.ceil(womenProducts.length / cardsPerSlide);
+  const totalSlidesKids = Math.ceil(kidsProducts.length / cardsPerSlide);
+
+  // Fetch products and filter by category
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productCollection = collection(db, "product");
+        
+        // Fetch products for Men category
+        const menQuery = query(productCollection, where("category", "==", "men"));
+        const menSnapshot = await getDocs(menQuery);
+        const menData = menSnapshot.docs.map(doc => doc.data());
+        setMenProducts(menData);
+
+        // Fetch products for Women category
+        const womenQuery = query(productCollection, where("category", "==", "women"));
+        const womenSnapshot = await getDocs(womenQuery);
+        const womenData = womenSnapshot.docs.map(doc => doc.data());
+        setWomenProducts(womenData);
+
+        // Fetch products for Kids category
+        const kidsQuery = query(productCollection, where("category", "==", "kids"));
+        const kidsSnapshot = await getDocs(kidsQuery);
+        const kidsData = kidsSnapshot.docs.map(doc => doc.data());
+        setKidsProducts(kidsData);
+        
+      } catch (error) {
+        console.error("Error fetching products: ", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const getProductSlides = (products) => {
     const slides = [];
@@ -13,17 +57,9 @@ const ProductsContainer = () => {
     return slides;
   };
 
-  const menProducts = getProductSlides(productcards.slice(0, 10));
-  const womenProducts = getProductSlides(productcards.slice(10, 20));
-  const kidsProducts = getProductSlides(productcards.slice(20, 30));
-
-  const [currentIndexMen, setCurrentIndexMen] = useState(0);
-  const [currentIndexWomen, setCurrentIndexWomen] = useState(0);
-  const [currentIndexKids, setCurrentIndexKids] = useState(0);
-
-  const totalSlidesMen = menProducts.length;
-  const totalSlidesWomen = womenProducts.length;
-  const totalSlidesKids = kidsProducts.length;
+  const menSlides = getProductSlides(menProducts);
+  const womenSlides = getProductSlides(womenProducts);
+  const kidsSlides = getProductSlides(kidsProducts);
 
   const handleDotClick = (index, category) => {
     if (category === 'men') setCurrentIndexMen(index);
@@ -33,16 +69,16 @@ const ProductsContainer = () => {
 
   return (
     <div className="w-full mt-10 p-10">
+      {/* Men Category */}
       <h1 className="text-5xl font-bold">Mens Latest</h1>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       <div className="relative">
         <div className="flex overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500" 
+          <div
+            className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentIndexMen * (100 / totalSlidesMen)}%)` }}
           >
-            
-            {menProducts.map((slide, slideIndex) => (
+            {menSlides.map((slide, slideIndex) => (
               <div key={slideIndex} className="flex justify-between w-full">
                 {slide.map((card, key) => (
                   <ProductCard
@@ -68,15 +104,16 @@ const ProductsContainer = () => {
         </div>
       </div>
 
+      {/* Women Category */}
       <h1 className="text-5xl font-bold mt-10">Womens Latest</h1>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       <div className="relative">
         <div className="flex overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500" 
+          <div
+            className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentIndexWomen * (100 / totalSlidesWomen)}%)` }}
           >
-            {womenProducts.map((slide, slideIndex) => (
+            {womenSlides.map((slide, slideIndex) => (
               <div key={slideIndex} className="flex justify-between w-full">
                 {slide.map((card, key) => (
                   <ProductCard
@@ -102,15 +139,16 @@ const ProductsContainer = () => {
         </div>
       </div>
 
+      {/* Kids Category */}
       <h1 className="text-5xl font-bold mt-10">Kids Latest</h1>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       <div className="relative">
         <div className="flex overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500" 
+          <div
+            className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentIndexKids * (100 / totalSlidesKids)}%)` }}
           >
-            {kidsProducts.map((slide, slideIndex) => (
+            {kidsSlides.map((slide, slideIndex) => (
               <div key={slideIndex} className="flex justify-between w-full">
                 {slide.map((card, key) => (
                   <ProductCard

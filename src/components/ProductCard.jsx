@@ -13,6 +13,9 @@ import {
   deleteDoc,
 } from "firebase/firestore"; 
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Paths from '../routes/paths';
+
 
 const ProductCard = ({ image, name, etoile, price, id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -142,6 +145,14 @@ const ProductCard = ({ image, name, etoile, price, id }) => {
           <div className="flex-grow text-white">{popupMessage}</div>
         </div>
       )}
+      <div className="w-full mb-2 flex align-center justify-center">
+       <Link 
+      to={`/productdetails/${id}`} 
+      className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg inline-block text-center"
+    >
+      View More
+    </Link>
+      </div>
     </div>
   );
 };
